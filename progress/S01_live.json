@@ -1,12 +1,12 @@
 {
   "session": "S01",
-  "section": "\u2460 Landscape",
-  "section_idx": 1,
+  "section": "Lab A",
+  "section_idx": 2,
   "sections_total": 9,
-  "xp_total": 16,
-  "active_minutes": 13,
-  "quiz_answered": 0,
-  "quiz_correct": 0,
+  "xp_total": 36,
+  "active_minutes": 15,
+  "quiz_answered": 3,
+  "quiz_correct": 3,
   "labs_self_reported": {
     "labA": false,
     "labB": false,
@@ -17,5 +17,5 @@
     "github_user": "askanilkumar",
     "team": "A"
   },
-  "updated_at": "2026-09-30T06:50:14.052778+00:00"
+  "updated_at": "2026-09-30T07:05:14.064075+00:00"
 }
