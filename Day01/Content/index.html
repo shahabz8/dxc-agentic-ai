@@ -198,7 +198,7 @@ footer .bar{justify-content:space-between}
     <div class="ag lab"><b>10:40</b><span>🧪 Lab B — First Bedrock call, compare models</span></div>
     <div class="ag"><b>11:20</b><span>Break</span></div>
     <div class="ag"><b>11:30</b><span>③ LLM Mechanics for Builders</span></div>
-    <div class="ag lab"><b>11:50</b><span>🧪 Lab C — Structured extraction + tracing</span></div>
+    <div class="ag lab"><b>11:50</b><span>🧪 Lab C — Structured extraction</span></div>
     <div class="ag"><b>12:30</b><span>🏆 Boss Quiz · Team roles · What's next</span></div>
   </div>
 </section>
@@ -248,12 +248,13 @@ footer .bar{justify-content:space-between}
     <h2>Workbench setup + Bedrock Playground</h2>
     <div class="wwho"><div><b>What we do</b>Get your VM, GitHub fork and AWS keys working, then try three models side by side in the Bedrock console.</div><div><b>Why</b>Every later lab builds on this setup. The Playground shows how models differ before you write any code.</div><div><b>Outcome / learning</b>A working workbench, and you can explain how models differ in speed, tokens and answer quality &mdash; and what temperature does.</div><div><b>How</b>Run SETUP.bat until all green &rarr; send one helpdesk ticket to 3 models &rarr; note latency and tokens &rarr; repeat at temperature 0 vs 1.</div></div>
     <ol>
-      <li><b>One-time setup</b> — follow <span class="path">setup\SETUP_GUIDE.md</span> (fork, clone to <span class="path">C:\AskIT</span>, run <span class="path">SETUP.bat</span>) <span class="tag">setup</span></li>
-      <li><b>Environment check</b> — <span class="path">SETUP.bat</span> ends with every line green <span class="tag">setup</span></li>
-      <li><b>Task A1:</b> In the Bedrock Playground, send the same ticket to <b>3 models</b>. Record latency and tokens in <span class="path">submission\labA_playground.md</span> <span class="tag">AWS</span></li>
-      <li><b>Task A2:</b> Run the same prompt 3× at temperature 0 and 3× at temperature 1. What changed? <span class="tag">AWS</span></li>
-      <li><b>Stretch:</b> Try an open-weight model (Llama or Mistral) — how does it compare? <span class="tag">stretch</span></li>
+      <li><b>Setup (once):</b> PowerShell &rarr; <span class="path">cd C:\AskIT\dxc-agentic-ai</span> &rarr; <span class="path">SETUP.bat</span>. Done when <b>AWS credentials</b> and <b>Bedrock model call</b> show [OK].</li>
+      <li><b>Open Bedrock:</b> AWS console &rarr; sign in with your user &rarr; region <b>N. Virginia</b> &rarr; search <b>Bedrock</b> &rarr; <b>Playgrounds &rarr; Chat</b>.</li>
+      <li><b>Task A1:</b> send the ticket (text is in <span class="path">A_bedrock_playground.md</span>) to <b>3 models</b>. Write latency, tokens and your 1&ndash;5 rating in <span class="path">submission\labA_playground.md</span>.</li>
+      <li><b>Task A2:</b> one model, 3&times; at temperature <b>0</b>, 3&times; at <b>1</b>. What changed?</li>
+      <li><span class="tag">stretch</span> Try an open-weight model (Llama or Mistral).</li>
     </ol>
+    <div class="card"><b>Stuck?</b> Model missing or &ldquo;access denied&rdquo; &rarr; tell the trainer, move on to the next model.</div>
         <div class="openpath">📂 Open in VS Code: <span class="path">C:\AskIT\dxc-agentic-ai\Day01\Labs\lab01-hello-llm\A_bedrock_playground.md</span></div>
     <div class="row"><button class="btn ghost" data-done="labA">✅ I finished Lab A (+20 XP)</button></div>
   </div>
@@ -291,6 +292,14 @@ footer .bar{justify-content:space-between}
       <div class="face back"><div>Voice (e.g. realtime speech models), video generation, some moderation models — awareness only in this course.</div></div></div></button>
   </div>
 
+  <div class="card" style="margin-top:18px;border:2px solid var(--accent);background:var(--accent-soft)">
+    <div class="row" style="justify-content:space-between;margin:0">
+      <div><b style="font-size:22px">🧭 Going deeper: the AI deployment landscape</b><br>
+        <span class="muted">Public cloud · private / on-prem · open-source &amp; 3rd-party &nbsp;|&nbsp; pay-as-you-go vs reserved GPU &nbsp;|&nbsp; cost calculator &amp; ADR trade-offs</span></div>
+      <a class="btn" href="ai_deployment_landscape.html" target="_blank" rel="noopener" style="text-decoration:none;display:inline-block">Open the landscape page &rarr;</a>
+    </div>
+  </div>
+
   <h3>Game · Pick the right model <span class="chip i">INTERMEDIATE</span></h3>
   <div data-quiz="pick"></div>
 
@@ -305,13 +314,14 @@ footer .bar{justify-content:space-between}
     <h2>Your first Bedrock call — and a model shoot-out</h2>
     <div class="wwho"><div><b>What we do</b>Make your first Bedrock Converse API call from Python and compare a small and a large model on real tickets.</div><div><b>Why</b>Every agent we build is a loop around this one call. Tokens and latency are what you pay for.</div><div><b>Outcome / learning</b>You can call an LLM from code, read tokens and latency, and choose a small or large model based on evidence.</div><div><b>How</b>Complete 3 TODOs in lab01a_first_call.py &rarr; run 5 tickets on both models &rarr; run pytest.</div></div>
     <ol>
-      <li>Open <span class="path">Day01/Labs/lab01-hello-llm/lab01a_first_call.py</span> — most of it is ready</li>
-      <li><b>Challenge 1 (TODO-1):</b> send a ticket to Bedrock using the Converse API</li>
-      <li><b>Challenge 2 (TODO-2):</b> print input tokens, output tokens and latency</li>
-      <li><b>Challenge 3 (TODO-3):</b> run 5 tickets on a small and a large model, then <b>run the script</b> to save your results</li>
-      <li><b>Stretch:</b> estimate the daily cost of 1,000 tickets/day with each model</li>
-      <li>Check yourself: <span class="path">pytest Day01\Labs\lab01-hello-llm</span> (Day End will push everything)</li>
+      <li><b>Get ready:</b> PowerShell &rarr; <span class="path">cd C:\AskIT\dxc-agentic-ai</span> &rarr; <span class="path">.venv\Scripts\activate</span>. You must see <b>(.venv)</b> at the start of the line.</li>
+      <li><b>Open the file:</b> <span class="path">cd Day01\Labs\lab01-hello-llm</span> &rarr; <span class="path">notepad lab01a_first_call.py</span> (or VS Code). Search for <b>TODO</b>.</li>
+      <li><b>Fill 3 TODOs</b> (hints are in the file): <b>TODO-1</b> call Bedrock and get the reply text &middot; <b>TODO-2</b> read input/output tokens &middot; <b>TODO-3</b> loop over 2 models &times; 5 tickets.</li>
+      <li><b>Run:</b> <span class="path">python lab01a_first_call.py</span>. You should see one reply with tokens, then average latency for both models.</li>
+      <li><b>Check:</b> <span class="path">pytest</span> &rarr; challenges 1&ndash;3 pass.</li>
+      <li><span class="tag">stretch</span> Estimate the daily cost of 1,000 tickets/day for each model.</li>
     </ol>
+    <div class="card"><b>Think:</b> which model would you choose for AskIT&rsquo;s first reply &mdash; and why?<br><b>Stuck?</b> No <b>(.venv)</b> &rarr; run the activate line again &middot; <b>IndentationError</b> &rarr; every line inside a function starts with the same 4 spaces &middot; <b>AccessDenied</b> &rarr; tell the trainer.</div>
     <div class="openpath">📂 Open in VS Code: <span class="path">C:\AskIT\dxc-agentic-ai\Day01\Labs\lab01-hello-llm\README.md</span></div>
     <div class="row"><button class="btn ghost" data-done="labB">✅ I finished Lab B (+20 XP)</button></div>
   </div>
@@ -413,7 +423,7 @@ footer .bar{justify-content:space-between}
     <button class="flip"><div class="in"><div class="face front"><b>Why not just parse the text?</b><span class="hint">Click to flip</span></div>
       <div class="face back"><div>Free text breaks your code. Define a <b>schema</b> (Pydantic), ask the model to fill it, then <b>validate</b>. Invalid → retry or reject.</div></div></div></button>
     <button class="flip"><div class="in"><div class="face front"><b>What is a trace?</b><span class="hint">Click to flip</span></div>
-      <div class="face back"><div>A recording of every call: prompt, response, tokens, latency, cost. In Langfuse you'll <b>see</b> what AskIT did — your #1 debugging tool.</div></div></div></button>
+      <div class="face back"><div>A recording of every call: prompt, response, tokens, latency, cost. It lets you <b>see</b> what AskIT did — a tool we switch on in a later session.</div></div></div></button>
   </div>
 
   <h3>Quick check</h3>
@@ -424,17 +434,18 @@ footer .bar{justify-content:space-between}
 <section data-title="Lab C" data-lab="1">
   <div class="lab">
     <div class="kicker">🧪 Lab C · 40 min</div>
-    <h2>Structured ticket extraction + your first trace</h2>
-    <div class="wwho"><div><b>What we do</b>Turn messy ticket text into clean, validated fields (category, priority, user, summary, sentiment) and trace every call in Langfuse.</div><div><b>Why</b>Agents need data, not prose. Structured output plus validation makes results reliable, and tracing shows what the model actually did.</div><div><b>Outcome / learning</b>Reliable structured output from an LLM, and your first trace to debug from.</div><div><b>How</b>Define the Ticket schema (TODO-4) &rarr; force the model to answer through a tool call and validate it (TODO-5) &rarr; add Langfuse tracing (TODO-6).</div></div>
+    <h2>Structured ticket extraction</h2>
+    <div class="wwho"><div><b>What we do</b>Turn messy ticket text into clean, validated fields (category, priority, user, summary, sentiment) and check the result against the human label.</div><div><b>Why</b>Agents need data, not prose. Structured output plus validation makes results reliable.</div><div><b>Outcome / learning</b>Reliable structured output from an LLM, and a feel for where it agrees or disagrees with a human.</div><div><b>How</b>Define the Ticket schema (TODO-4) &rarr; force the model to answer through a tool call and validate it (TODO-5) &rarr; run it on 5 real tickets.</div></div>
     <ol>
-      <li>Open <span class="path">Day01/Labs/lab01-hello-llm/lab01b_extract.py</span></li>
-      <li><b>Challenge 4 (TODO-4):</b> complete the <b>Ticket</b> schema — category, priority, user_id, summary, sentiment</li>
-      <li><b>Challenge 5 (TODO-5):</b> get structured output from Bedrock and validate it</li>
-      <li><b>Challenge 6 (TODO-6):</b> add Langfuse tracing, run the script, paste your trace URL into <span class="path">submission\trace_url.txt</span></li>
-      <li><b>Stretch A:</b> extract the same ticket 5× at temperature 0 and 5× at 1 — how consistent are the fields?</li>
-      <li><b>Stretch B:</b> run all 100 tickets — print the category and priority split</li>
-      <li>Check yourself: <span class="path">pytest Day01\Labs\lab01-hello-llm</span> (Day End will push everything)</li>
+      <li><b>Same folder, same (.venv).</b> Open <span class="path">lab01b_extract.py</span> and search for <b>TODO-4</b>.</li>
+      <li><b>TODO-4:</b> finish the <b>Ticket</b> schema (5 fields with rules).</li>
+      <li><b>TODO-5:</b> make the model answer through a tool call, then validate it against the schema.</li>
+      <li><b>Run:</b> <span class="path">python lab01b_extract.py</span>. You should see 5 tickets, each marked <b>OK</b> or <b>DIFF</b> (DIFF = the model disagrees with the human label &mdash; who is right?).</li>
+      <li><b>Check:</b> <span class="path">pytest</span> &rarr; all 5 pass.</li>
+      <li><b>Ignore</b> the <b>TODO-6</b> note in the file and the &ldquo;Langfuse&rdquo; message at the end of the run &mdash; that is for a later session.</li>
+      <li><span class="tag">stretch</span> Same ticket 5&times; at temperature 0 vs 1 &mdash; how many fields change?</li>
     </ol>
+    <div class="card"><b>Stuck?</b> <b>ValidationError</b> &rarr; check the allowed values in your schema &middot; Throttling &rarr; wait 30 s and re-run.</div>
     <div class="openpath">📂 Open in VS Code: <span class="path">C:\AskIT\dxc-agentic-ai\Day01\Labs\lab01-hello-llm\README.md</span></div>
     <div class="row"><button class="btn ghost" data-done="labC">✅ I finished Lab C (+20 XP)</button></div>
   </div>
@@ -599,7 +610,7 @@ const Q={
   {l:"i",q:"You increase temperature from 0.2 to 1.5. What happens?",o:["Answers get shorter","Output becomes more varied and less predictable","Costs drop","The context window grows"],a:1,w:"Higher temperature flattens the probability distribution."},
   {l:"i",q:"Why validate LLM output with a schema (e.g. Pydantic)?",o:["It makes the model faster","It catches missing/invalid fields before your code breaks","It reduces tokens","It's required by Bedrock"],a:1,w:"Treat model output like any untrusted input — validate it."},
   {l:"i",q:"Doubling the chat history sent on every call mainly affects…",o:["Only the output quality","Input cost and latency on every call","Nothing — history is free","The model's training data"],a:1,w:"History is re-sent as input tokens each call — cost and latency grow."},
-  {l:"i",q:"What does a trace in Langfuse let you see?",o:["Only the final answer","Prompts, responses, tokens, latency and cost per step","The model's weights","Your AWS bill"],a:1,w:"Traces make every step visible — essential for debugging agents."},
+  {l:"i",q:"What does a trace of an LLM call let you see?",o:["Only the final answer","Prompts, responses, tokens, latency and cost per step","The model's weights","Your AWS bill"],a:1,w:"Traces make every step visible — essential for debugging agents."},
   {l:"a",q:"When is a reasoning model NOT worth it?",o:["Planning a multi-step fix","Analysing a complex outage","Classifying a ticket into 8 categories","Debugging conflicting policies"],a:2,w:"Simple classification doesn't need thinking tokens — you'd pay more for no gain."},
   {l:"a",q:"The model misses a fact placed in the middle of a very long prompt. Best fix?",o:["Raise temperature","Send only the relevant chunks, key facts first or last","Use a bigger max-tokens","Switch region"],a:1,w:"Relevance beats volume. Retrieval + good ordering beats stuffing the window."},
   {l:"a",q:"Temperature 0 on the same prompt, run twice…",o:["Always gives identical output","Usually similar, but not guaranteed identical","Always errors","Is random"],a:1,w:"Low temperature reduces variation but determinism isn't guaranteed. Build tests that tolerate it."},

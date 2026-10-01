@@ -12,15 +12,15 @@ git --version
 ## Step 1 — Fork the course repo
 1. On the VM browser, sign in to **your** GitHub account.
 2. Open the trainer repo link shared in the Teams chat.
-3. Click **Fork** → keep the name **dxcgenai** → **Create fork**.
-   (Trainer repo: https://github.com/askanilkumar/dxcgenai)
+3. Click **Fork** → keep the name **dxc-agentic-ai** → **Create fork**.
+   (Trainer repo: https://github.com/askanilkumar/dxc-agentic-ai)
 
 ## Step 2 — Clone your fork to C:\AskIT
 Open **Command Prompt** and run (replace `YOUR-GITHUB`):
 ```
 mkdir C:\AskIT
 cd /d C:\AskIT
-git clone https://github.com/YOUR-GITHUB/dxcgenai.git dxc-agentic-ai
+git clone https://github.com/YOUR-GITHUB/dxc-agentic-ai.git dxc-agentic-ai
 ```
 ✅ You now have `C:\AskIT\dxc-agentic-ai` (the last word in the command renames the folder — keep it exactly)
 
@@ -43,7 +43,7 @@ In File Explorer, double-click **`C:\AskIT\dxc-agentic-ai\SETUP.bat`**. It will:
 3. Open a terminal (`Ctrl+`\``) — you should see `(.venv)` at the start of the line.
 
 ## Step 5 — Start the day
-Double-click **`START_DAY.bat`** → today's session page opens at `http://localhost:8765`. Keep the black window open.
+In Command Prompt: `cd /d C:\AskIT\dxc-agentic-ai` then **`START_DAY.bat 1`** (Day 1) or **`START_DAY.bat 2`** (Day 2). The session page opens at `http://localhost:8765`. Keep the black window open.
 
 ---
 
@@ -57,3 +57,8 @@ Double-click **`START_DAY.bat`** → today's session page opens at `http://local
 | `[!!] AWS credentials` | Re-check keys in `.env` (no spaces, no quotes), save, run `python tools\verify_env.py` |
 | Bedrock `AccessDenied` / model not found | Call the trainer — model access or model ID issue |
 | Page doesn't open | Open `http://localhost:8765` manually while START_DAY.bat window is open |
+| `(.venv)` not showing / `ModuleNotFoundError` | Run `.venv\Scripts\activate` in **Command Prompt** (START_DAY.bat does this by itself) |
+| PowerShell says "running scripts is disabled" | Use **Command Prompt**, or run `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass` first |
+| AWS console opens in the wrong region | Top-right region menu → **US East (N. Virginia) us-east-1** |
+| `.env` not visible in Explorer | It starts with a dot. Open it with `notepad .env` from `C:\AskIT\dxc-agentic-ai` |
+| `verify_env.py` not found | It is in `tools\`: `python tools\verify_env.py` |
