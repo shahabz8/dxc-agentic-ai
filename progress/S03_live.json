@@ -3,15 +3,15 @@
   "section": "\u2462 RAG",
   "section_idx": 5,
   "sections_total": 10,
-  "xp_total": 102,
-  "active_minutes": 51,
-  "quiz_answered": 7,
-  "quiz_correct": 7,
+  "xp_total": 135,
+  "active_minutes": 55,
+  "quiz_answered": 10,
+  "quiz_correct": 10,
   "labs_self_reported": {
     "lab2a": false,
     "lab2b": false,
     "lab2c": false
   },
   "participant": null,
-  "updated_at": "2026-10-05T06:41:19.258588+00:00"
+  "updated_at": "2026-10-05T06:46:19.260353+00:00"
 }
