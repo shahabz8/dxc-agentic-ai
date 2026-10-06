@@ -39,16 +39,20 @@ def embed(client, text, dimensions=512):
     #        (2) call client.invoke_model with the model id and that body
     #        (3) the reply body is a stream: read it, parse the JSON, take "embedding"
     # SKELETON (fill the ___):
-    #   body = json.dumps({"inputText": ___, "dimensions": ___, "normalize": True})
-    #   response = client.invoke_model(modelId=___, body=body)
-    #   result = json.loads(response["body"].___())
-    #   return result["___"]
+    body = json.dumps({"inputText": text, "dimensions": dimensions, "normalize": True})
+    response = client.invoke_model(modelId=EMBED_MODEL, body=body)
+    result = json.loads(response["body"].read())
+    return result["embedding"]
     # My prediction: how many numbers will come back for one sentence? ____
     raise NotImplementedError("TODO-1")
 
 
 def cosine(a, b):
     """Cosine similarity between two vectors: 1 = same meaning, ~0 = unrelated."""
+    # TODO-2: dot(a, b) / (norm(a) * norm(b))   -> use np.dot and np.linalg.norm
+    #   Return a plain Python float.
+    a, b = np.asarray(a, dtype=float), np.asarray(b, dtype=float)
+    return float(np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b)))
     # TODO-2: Measure how close two meanings are with one number.
     # WHY:   Each vector is an arrow. Two arrows pointing the same way = same meaning
     #        (score 1). At right angles = unrelated (score 0). Cosine similarity
@@ -64,6 +68,9 @@ def cosine(a, b):
 def top_k(query_vec, items, k=3):
     """items = [{"id": ..., "vector": [...]}, ...]
     Return the k most similar items as [{"id": ..., "score": ...}], highest score first."""
+    scored = [{"id": it["id"], "score": cosine(query_vec, it["vector"])} for it in items]
+    scored.sort(key=lambda x: x["score"], reverse=True)
+    return scored[:k]
     # TODO-3: Rank the KB articles by how close they are to the ticket.
     # WHY:   This is retrieval, the "R" in RAG: given a question, find the pieces
     #        of knowledge nearest in meaning. Everything else in RAG builds on it.
